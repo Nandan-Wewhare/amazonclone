@@ -4,8 +4,10 @@ import CurrencyFormat from "react-currency-format";
 import Button from "@material-ui/core/Button";
 import { useStateValue } from "./Stateprovider";
 import { getTotal } from "./reducer";
+import { useHistory } from "react-router-dom";
 
 function Subtotal() {
+  const history = useHistory();
   const [{ basket }, dispatch] = useStateValue();
   return (
     <div className="subtotal">
@@ -28,7 +30,11 @@ function Subtotal() {
         thousandSeparator={true}
         prefix={"Rs."}
       />
-      <Button variant="contained" color="primary">
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={(e) => history.push("/payment")}
+      >
         Proceed and Pay
       </Button>
     </div>
